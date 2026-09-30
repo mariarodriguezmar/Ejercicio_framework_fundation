@@ -288,5 +288,55 @@ if (window.jQuery) {
     });
   }
 
+  // RESERVA
+    
+  var seccionReserva = document.querySelector('#reserva');
+
+  if (seccionReserva) {
+    var encabezadoReserva = qsa('#reserva > div');
+    var formulario = seccionReserva.querySelector('form');
+    var camposFormulario = formulario ? qsa('form > *', seccionReserva) : [];
+
+    revelarAlEntrar(seccionReserva, [
+      { els: encabezadoReserva, y: 16, duracion: 500 },
+      { els: camposFormulario, y: 16, duracion: 450, base: 250, paso: 70 }
+    ], 0.15);
+
+    if (formulario) {
+      qsa('label', formulario).forEach(function (etiqueta) {
+        etiqueta.style.transition = 'transform 0.2s ease';
+      });
+      formulario.addEventListener('focusin', function (e) {
+        var celda = e.target.closest('.cell');
+        var etiqueta = celda && celda.querySelector('label');
+        if (etiqueta) etiqueta.style.transform = 'translateX(' + M(4) + 'px)';
+      });
+      formulario.addEventListener('focusout', function (e) {
+        var celda = e.target.closest('.cell');
+        var etiqueta = celda && celda.querySelector('label');
+        if (etiqueta) etiqueta.style.transform = '';
+      });
+    }
+  }
+
+ //FOOTER
+  var pie = document.querySelector('#contacto');
+
+  if (pie) {
+    var columnasPie = qsa('.grid-container.grid-x > .cell', pie);
+    var derechosPie = qsa('.grid-container.text-center', pie);
+
+    revelarAlEntrar(pie, [
+      { els: columnasPie, y: 16, duracion: 550, paso: 100 },
+      { els: derechosPie, y: 0, duracion: 500, base: 350 }
+    ], 0.2);
+
+    qsa('ul a', pie).forEach(function (enlace) {
+      enlace.style.display = 'inline-block'; 
+      efectoHover(enlace, 'transform 0.2s ease', {
+        transform: 'translateX(' + M(4) + 'px)'
+      });
+    });
+  }
  
 })();
