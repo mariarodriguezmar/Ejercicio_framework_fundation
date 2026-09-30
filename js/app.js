@@ -204,5 +204,89 @@ if (window.jQuery) {
     });
   }
 
+  //INICIO 
+    
+  var textosHero = qsa('main > section:first-child .cell:first-child > *');
+  var imagenHero = document.querySelector('.imagen-hero');
 
+  aparecer(textosHero, { base: 250, paso: 90, duracion: 650 });
+
+  if (imagenHero) {
+    imagenHero.animate(
+      [
+        { opacity: 0, transform: 'scale(' + E(1.04) + ')' },
+        { opacity: 1, transform: 'none' }
+      ],
+      { duration: 900, delay: 400, easing: 'ease-out', fill: 'backwards' }
+    );
+  }
+
+  // BOTONES
+    
+  qsa('.button').forEach(function (boton) {
+    // Se conserva la transición de color de Foundation y se añade la de movimiento
+    boton.style.transition =
+      'background-color 0.25s ease-out, color 0.25s ease-out, transform 0.2s ease';
+
+    ['mouseenter', 'focus'].forEach(function (ev) {
+      boton.addEventListener(ev, function () {
+        boton.style.transform = 'translateY(' + M(-2) + 'px)';
+      });
+    });
+    ['mouseleave', 'blur'].forEach(function (ev) {
+      boton.addEventListener(ev, function () { boton.style.transform = ''; });
+    });
+    boton.addEventListener('mousedown', function () {
+      boton.style.transform = 'scale(' + E(0.97) + ')'; // "presionado"
+    });
+    boton.addEventListener('mouseup', function () {
+      boton.style.transform = 'translateY(' + M(-2) + 'px)';
+    });
+  });
+
+  //SERVICIOS
+
+  var seccionServicios = document.querySelector('#servicios');
+
+  if (seccionServicios) {
+    var encabezadoServicios = qsa('#servicios > .grid-container');
+    var cards = qsa('#servicios article');
+
+    revelarAlEntrar(seccionServicios, [
+      { els: encabezadoServicios, y: 16, duracion: 500 },
+      { els: cards, y: 24, base: 150, paso: 110 }
+    ], 0.15);
+
+    
+    cards.forEach(function (card) {
+      var imagen = card.querySelector('img');
+      var titulo = card.querySelector('h3');
+
+      efectoHover(card, 'transform 0.25s ease, box-shadow 0.25s ease', {
+        transform: 'translateY(' + M(-6) + 'px)',
+        boxShadow: '0 22px 50px rgba(31, 61, 52, 0.18)'
+      }, { entrar: ['mouseenter'], salir: ['mouseleave'] });
+
+      if (imagen) {
+        imagen.style.transition = 'transform 0.5s ease';
+        card.addEventListener('mouseenter', function () { imagen.style.transform = 'scale(' + E(1.05) + ')'; });
+        card.addEventListener('mouseleave', function () { imagen.style.transform = ''; });
+      }
+      if (titulo) {
+        titulo.style.transition = 'transform 0.25s ease';
+        card.addEventListener('mouseenter', function () { titulo.style.transform = 'translateX(' + M(4) + 'px)'; });
+        card.addEventListener('mouseleave', function () { titulo.style.transform = ''; });
+      }
+
+     
+      card.addEventListener('click', function () {
+        card.animate(
+          [{ transform: 'scale(' + E(0.98) + ')' }, { transform: 'scale(1)' }],
+          { duration: 300, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }
+        );
+      });
+    });
+  }
+
+ 
 })();
