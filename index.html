@@ -11,13 +11,24 @@
   </head>
 <body>
   <header>
-    <nav>
+    <!-- Barra para dispositivos móviles -->
+    <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+
+      <button class="menu-icon" type="button" data-toggle="main-menu"></button>
+
+      <div class="title-bar-title">
+        Casa Nativa
+      </div>
+
+    </div>
+
+    <nav class="top-bar" id="main-menu">
       
-      <a href="#">
+      <a href="#" class="menu-text">
           Casa Nativa
       </a>
 
-      <ul>
+      <ul class="menu" data-responsive-menu="accordion medium-dropdown">
 
         <li>
             <a href="#inicio">Inicio</a>
@@ -40,7 +51,7 @@
         </li>
 
         <li>
-            <a href="#reserva" class="button">
+            <a href="#reserva" class="button ">
                 Reservar ahora
             </a>
         </li>
@@ -51,33 +62,36 @@
 
   </header>
   <main>
-    <section id="inicio">
+    <section  class="grid-container grid-x  align-center ">
 
-      <div>
+      <div class="cell small-12 medium-6">
 
-        <span>
+        <span class="text-left label secondary">
             Escápate de la rutina
         </span>
 
-        <h1>
-            Respira naturaleza.
-            Descansa como en casa.
+        <h1 class="text-center">
+            Respira naturaleza
         </h1>
+        
+        <h2 class="text-center">
+            Descansa como en casa
+        </h2>
 
-        <p>
+        <p class="text-center">
             Casa Nativa es un refugio rural pensado para
             desconectarte del ruido, disfrutar el paisaje y
             vivir una experiencia tranquila a pocos minutos
             de la ciudad.
         </p>
 
-        <div>
+        <div class="button-group align-center grid-x">
 
-          <a href="#reserva">
+          <a href="#reserva" class="button">
               Consultar disponibilidad
           </a>
 
-          <a href="#experiencia">
+          <a href="#experiencia" class="button secondary">
               Conocer la experiencia
           </a>
 
@@ -85,27 +99,27 @@
 
       </div>
 
-      <div>
+      <div class="cell small-12 medium-6">
           <img
               src="img/hero.jpg"
-              alt="Casa rural rodeada de naturaleza">
+              alt="Casa rural rodeada de naturaleza" class="imagen-hero ">
       </div>
 
     </section>
 
-    <section id="servicios">
+    <section id="servicios" class="grid-container" >
 
-      <div>
+      <div class="grid-container">
 
-        <span>
+        <span class="text-left label secondary">
             Nuestros servicios
         </span>
 
-        <h2>
+        <h2 class="text-center">
             Todo lo necesario para una estadía especial
         </h2>
 
-        <p>
+        <p class="text-center">
             Diseñamos cada detalle para que disfrutes una
             experiencia cómoda, tranquila y cercana a la
             naturaleza.
@@ -114,62 +128,62 @@
       </div>
 
 
-      <div>
+      <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-4">
 
-        <article>
+        <article class="cell card">
 
         <img src="" alt="Habitación privada">
 
-        <h3>
+        <h3 class="card-section">
             Habitación privada
         </h3>
 
-        <p>
+        <p class="card-section">
             Espacios cómodos, iluminados y preparados
             para descansar.
         </p>
 
         </article>
 
-        <article>
+        <article class="cell card">
 
         <img src="" alt="Desayuno con productos locales">
 
-        <h3>
+        <h3 class="card-section">
             Desayuno local
         </h3>
 
-        <p>
+        <p class="card-section">
             Comienza el día con sabores frescos y
             productos de la región.
         </p>
 
         </article>
 
-        <article>
+        <article class="cell card">
 
         <img src="" alt="Jardín y zona de descanso">
 
-        <h3>
+        <h3 class="card-section">
             Zona de descanso
         </h3>
 
-        <p>
+        <p class="card-section">
             Jardines y espacios tranquilos para leer,
             conversar o simplemente desconectarte.
         </p>
 
         </article>
 
-        <article>
+        <article class="cell card">
 
         <img src="" alt="Paisaje natural cercano">
 
-        <h3>
+        <h3 class="card-section">
             Experiencias
         </h3>
 
-        <p>
+        <p class="card-section">
             Recomendaciones de rutas, miradores y
             actividades cercanas.
         </p>
@@ -180,19 +194,19 @@
 
     </section>
 
-    <section id="reserva">
+    <section id="reserva" class="grid-container">
 
-      <div>
+      <div class="grid-container">
 
-        <span>
+        <span class="text-left label secondary">
             Reserva
         </span>
 
-        <h2>
+        <h2 class="text-center">
             Planea tu próxima escapada
         </h2>
 
-        <p>
+        <p class="text-center">
             Cuéntanos cuándo quieres visitarnos y nos
             pondremos en contacto contigo para confirmar
             disponibilidad.
@@ -200,9 +214,9 @@
 
       </div>
             
-      <form>
+      <form class="grid-x grid-margin-x">
 
-        <div>
+        <div class="cell medium-6">
 
           <label for="nombre">
               Nombre completo
@@ -213,7 +227,7 @@
         </div>
 
 
-        <div>
+        <div class="cell medium-6">
 
           <label for="correo">
               Correo electrónico
@@ -221,10 +235,10 @@
 
           <input type="email" id="correo" name="correo" required>
 
-          </div>
+        </div>
 
 
-          <div>
+          <div class="cell medium-6">
 
             <label for="telefono">
                 Teléfono
@@ -235,7 +249,7 @@
           </div>
 
 
-          <div>
+          <div class="cell medium-6">
 
             <label for="llegada">
                 Fecha de llegada
@@ -246,7 +260,7 @@
           </div>
 
 
-          <div>
+          <div class="cell medium-6">
 
             <label for="salida">
                 Fecha de salida
@@ -257,7 +271,7 @@
           </div>
 
 
-          <div>
+          <div class="cell medium-6">
 
             <label for="huespedes">
                 Número de huéspedes
@@ -268,7 +282,7 @@
           </div>
 
 
-          <div>
+          <div class="cell">
 
             <label for="mensaje">
                 Mensaje o solicitud especial
@@ -280,7 +294,7 @@
           </div>
 
 
-          <button type="submit">
+          <button type="submit" class="button success cell shrink">
               Enviar solicitud
           </button>
 
@@ -289,10 +303,10 @@
     </section>
   </main>
 
-  <footer id="contacto">
+  <footer id="contacto" class="callout primary">
 
-    <div>
-      <div>
+    <div class="grid-container grid-x grid-margin-x">
+      <div  class="cell medium-4">
 
         <h2>
             Casa Nativa
@@ -305,7 +319,7 @@
       </div>
 
 
-      <div>
+      <div  class="cell medium-4">
 
         <h3>
             Contacto
@@ -326,13 +340,13 @@
       </div>
 
 
-      <div>
+      <div  class="cell medium-4">
 
         <h3>
             Enlaces
         </h3>
 
-        <ul>
+        <ul class="no-bullet">
 
           <li>
               <a href="#inicio">Inicio</a>
@@ -356,7 +370,7 @@
 
     </div>
 
-    <div>
+    <div class="grid-container text-center">
 
       <p>
           © 2026 Casa Nativa. Proyecto académico.
