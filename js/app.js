@@ -138,5 +138,71 @@ if (window.jQuery) {
     });
   }
 
- 
+  enlacesMenu.forEach(function (enlace) {
+    enlace.style.transition = 'transform 0.2s ease';
+
+    ['mouseenter', 'focus'].forEach(function (ev) {
+      enlace.addEventListener(ev, function () {
+        subrayar(enlace, 1);
+        enlace.style.transform = 'translateY(' + M(-1) + 'px)';
+      });
+    });
+    ['mouseleave', 'blur'].forEach(function (ev) {
+      enlace.addEventListener(ev, function () {
+        subrayar(enlace, enlace === enlaceActivo ? 1 : 0);
+        enlace.style.transform = '';
+      });
+    });
+  });
+
+  var seccionesMenu = [];
+  enlacesMenu.forEach(function (enlace) {
+    var id = enlace.getAttribute('href');
+    if (id && id.length > 1) {
+      var seccion = document.querySelector(id);
+      if (seccion) seccionesMenu.push({ enlace: enlace, seccion: seccion });
+    }
+  });
+
+  if ('IntersectionObserver' in window && seccionesMenu.length) {
+    var observadorMenu = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (!entrada.isIntersecting) return;
+        var coincidencia = seccionesMenu.find(function (s) { return s.seccion === entrada.target; });
+        if (!coincidencia || coincidencia.enlace === enlaceActivo) return;
+
+        var anterior = enlaceActivo;
+        enlaceActivo = coincidencia.enlace;
+        if (anterior) subrayar(anterior, 0);
+        subrayar(enlaceActivo, 1);
+      });
+    }, { rootMargin: '-40% 0px -50% 0px' }); // línea de lectura hacia el centro
+
+    seccionesMenu.forEach(function (s) { observadorMenu.observe(s.seccion); });
+  }
+
+  if (cabecera) {
+    var conSombra = false;
+    var actualizarSombra = function () {
+      var debeTener = window.scrollY > 8;
+      if (debeTener === conSombra) return;
+      conSombra = debeTener;
+      tween(cabecera, 'sombra', debeTener ? 1 : 0, 300, function (v) {
+        cabecera.style.boxShadow = v > 0.01
+          ? '0 6px ' + (24 * v) + 'px rgba(31, 61, 52, ' + (0.12 * v) + ')'
+          : '';
+      });
+    };
+    window.addEventListener('scroll', actualizarSombra, { passive: true });
+    actualizarSombra();
+  }
+
+  if (window.jQuery) {
+    window.jQuery('#main-menu').on('toggled.zf.responsiveToggle', function () {
+      if (!window.jQuery(this).is(':visible')) return;
+      aparecer(itemsMenu, { y: -6, duracion: 350, paso: 50 });
+    });
+  }
+
+
 })();
