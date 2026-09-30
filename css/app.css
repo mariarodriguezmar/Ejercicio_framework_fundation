@@ -1,0 +1,440 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --verde-900: #1f3d34;
+  --verde-700: #2f5d50;
+  --verde-100: #e3ece6;
+  --arena: #f7f2e9;
+  --blanco: #ffffff;
+  --terracota: #a9562f;
+  --terracota-osc: #8f4623;
+  --texto: #2a332e;
+  --texto-suave: #5c6861;
+  --borde: #dfe5dd;
+
+  --fuente-titulo: "Fraunces", Georgia, "Times New Roman", serif;
+  --fuente-texto: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --sombra-suave: 0 10px 30px rgba(31, 61, 52, 0.08);
+  --sombra-media: 0 20px 50px rgba(31, 61, 52, 0.16);
+}
+
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* evita que el menú fijo tape los títulos */
+}
+
+body {
+  font-family: var(--fuente-texto);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--texto);
+  background: var(--arena);
+}
+
+h1, h2, h3 {
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  color: var(--verde-900);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 4.25rem); margin-bottom: 0.5rem; }
+h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); margin-bottom: 1rem; }
+h3 { font-size: 1.35rem; }
+
+p { color: var(--texto-suave); }
+
+
+.label,
+.label.success,
+.label.secondary,
+#reserva span {
+  font-family: var(--fuente-texto);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--verde-100);
+  color: var(--verde-700);
+}
+
+
+.button,
+.button.success {
+  font-family: var(--fuente-texto);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  background: var(--terracota);
+  color: var(--blanco);
+  transition: background-color 0.2s ease;
+}
+
+.button:hover,
+.button:focus,
+.button.success:hover,
+.button.success:focus {
+  background: var(--terracota-osc);
+  color: var(--blanco);
+}
+
+.button.secondary {
+  background: transparent;
+  color: var(--verde-700);
+  box-shadow: inset 0 0 0 2px var(--verde-700);
+}
+
+.button.secondary:hover,
+.button.secondary:focus {
+  background: var(--verde-700);
+  color: var(--blanco);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--terracota);
+  outline-offset: 3px;
+}
+
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.top-bar,
+.top-bar ul {
+  background: rgba(247, 242, 233, 0.94);
+}
+
+.top-bar {
+  padding: 0.6rem 2rem;
+  border-bottom: 1px solid var(--borde);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.title-bar {
+  background: var(--verde-900);
+  font-family: var(--fuente-titulo);
+}
+
+#main-menu .menu-text {
+  font-family: var(--fuente-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--verde-900);
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+#main-menu .menu > li > a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--texto);
+}
+
+
+#main-menu .menu > li > a:not(.button) {
+  position: relative;
+}
+
+#main-menu .menu > li > a:not(.button)::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0.4rem;
+  height: 2px;
+  background: var(--terracota);
+  transform: scaleX(var(--u, 0));
+  transform-origin: left center;
+}
+
+
+#main-menu .menu > li > a.button {
+  margin-left: 0.5rem;
+  padding: 0.6rem 1.3rem;
+  font-size: 0.95rem;
+  color: var(--blanco);
+}
+
+
+.anim-ready #main-menu .menu-text,
+.anim-ready #main-menu .menu > li,
+.anim-ready .title-bar {
+  opacity: 0;
+}
+
+
+main > section:first-child {
+  padding-top: clamp(3rem, 8vw, 6rem);
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+main > section:first-child .label {
+  margin-bottom: 1.25rem;
+}
+
+main > section:first-child h2 {
+  font-family: var(--fuente-texto);
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  font-weight: 500;
+  color: var(--terracota);
+  letter-spacing: 0;
+  margin-bottom: 1.25rem;
+}
+
+main > section:first-child p {
+  font-size: 1.15rem;
+  max-width: 34rem;
+  margin-bottom: 2rem;
+}
+
+main > section:first-child .cell:first-child {
+  padding-right: 0;
+}
+
+@media print, screen and (min-width: 40em) {
+  main > section:first-child .cell:first-child {
+    padding-right: 3rem;
+  }
+}
+
+
+@media screen and (max-width: 39.99875em) {
+  main > section:first-child .button-group {
+    justify-content: center;
+  }
+  main > section:first-child p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+main > section:first-child {
+  align-items: stretch;
+}
+
+main > section:first-child .cell:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main > section:first-child .cell:last-child {
+  position: relative;
+  min-height: 18rem; 
+}
+
+@media print, screen and (min-width: 40em) {
+  main > section:first-child .cell:last-child {
+    min-height: 22rem;
+  }
+}
+
+.imagen-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  border-radius: 28px;
+  box-shadow: var(--sombra-media);
+  background: var(--verde-100);
+}
+
+/* ---------- Servicios ---------- */
+#servicios {
+  padding-top: clamp(3rem, 7vw, 5rem);
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+#servicios > .grid-container {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+#servicios > .grid-container p {
+  max-width: 40rem;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+#servicios > .grid-container h2 {
+  margin-top: 1rem;
+}
+
+/* Tarjetas (Foundation .card) */
+#servicios article.card {
+  border: 0;
+  border-radius: 20px;
+  background: var(--blanco);
+  box-shadow: var(--sombra-suave);
+  will-change: transform;
+}
+
+#servicios article img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--verde-100);
+}
+
+#servicios article h3.card-section {
+  padding: 1.25rem 1.25rem 0;
+  margin-bottom: 0;
+}
+
+#servicios article p.card-section {
+  padding: 0.5rem 1.25rem 1.5rem;
+  margin-bottom: 0;
+  font-size: 0.98rem;
+}
+
+/* Estado inicial ocultable (solo con JS activo) */
+.anim-ready #servicios > .grid-container,
+.anim-ready #servicios article {
+  opacity: 0;
+}
+
+/* ---------- Reserva ---------- */
+#reserva {
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+#reserva > div:first-child {
+  max-width: 40rem;
+  margin: 0 auto 2.5rem;
+}
+
+#reserva > div:first-child h2 {
+  margin-top: 1rem;
+}
+
+#reserva > div:first-child p {
+  font-size: 1.1rem;
+}
+
+
+#reserva form {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  background: var(--blanco);
+  border-radius: 24px;
+  box-shadow: var(--sombra-suave);
+}
+
+#reserva label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--verde-900);
+  margin-bottom: 0.25rem;
+}
+
+#reserva input,
+#reserva textarea {
+  height: auto;
+  padding: 0.75rem 1rem;
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  color: var(--texto);
+  background: #fbfaf6;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+#reserva input:focus,
+#reserva textarea:focus {
+  border-color: var(--verde-700);
+  background: var(--blanco);
+  box-shadow: 0 0 0 3px rgba(47, 93, 80, 0.18);
+}
+
+#reserva form .button {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  padding: 1rem 2.25rem;
+  font-size: 1.05rem;
+}
+
+
+#contacto.callout {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--verde-900);
+  color: rgba(255, 255, 255, 0.82);
+  padding: clamp(2.5rem, 6vw, 4rem) 0 1.5rem;
+}
+
+#contacto p {
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+}
+
+#contacto h2 {
+  color: var(--blanco);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+#contacto h3 {
+  font-family: var(--fuente-texto);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f0c9b3;
+  margin-bottom: 0.75rem;
+}
+
+#contacto a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+
+#contacto a:hover {
+  color: var(--blanco);
+  text-decoration: underline;
+}
+
+#contacto .grid-container.text-center {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+#contacto .grid-container.text-center p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}
